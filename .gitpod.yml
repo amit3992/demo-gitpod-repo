@@ -3,6 +3,7 @@ ports:
     onOpen: open-preview
 
 tasks:
+  - before: sdk install java 17.0.4.1-tem
   - init: ./mvnw package -DskipTests
 
 vscode:
