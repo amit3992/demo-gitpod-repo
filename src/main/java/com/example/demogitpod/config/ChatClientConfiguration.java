@@ -1,6 +1,7 @@
 package com.example.demogitpod.config;
 
 import com.theokanning.openai.service.OpenAiService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -23,7 +24,12 @@ public class ChatClientConfiguration {
     @ConditionalOnMissingBean(name = "openAiApiToken")
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public String openAiApiToken() {
-        return System.getenv(OPENAI_API_TOKEN);
+        String token = System.getenv(OPENAI_API_TOKEN);
+        if (StringUtils.isEmpty(token)) {
+            LOGGER.warn("OpenAI Token not set in env variables");
+            return "";
+        }
+        return token;
     }
 
     /**

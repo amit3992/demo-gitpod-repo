@@ -20,7 +20,7 @@ public class ChatClientService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatClientService.class);
     private final OpenAiService openAiService;
 
-    @Value("chat.openai.model")
+    @Value("${chat.openai.model}")
     private String model;
 
     public CompletionResult complete(String prompt) {
