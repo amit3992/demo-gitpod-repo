@@ -24,12 +24,7 @@ public class ChatClientConfiguration {
     @ConditionalOnMissingBean(name = "openAiApiToken")
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public String openAiApiToken() {
-        String token = System.getenv(OPENAI_API_TOKEN);
-        if (StringUtils.isEmpty(token)) {
-            LOGGER.warn("OpenAI Token not set in env variables");
-            return "";
-        }
-        return token;
+        return OPENAI_API_TOKEN;
     }
 
     /**
