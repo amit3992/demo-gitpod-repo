@@ -4,6 +4,7 @@ import com.theokanning.openai.service.OpenAiService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -24,7 +25,15 @@ public class ChatClientConfiguration {
     @ConditionalOnMissingBean(name = "openAiApiToken")
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public String openAiApiToken() {
+        printApiKey();
         return OPENAI_API_TOKEN;
+    }
+
+    @Value("${api.key}")
+    private String apiKey;
+
+    public void printApiKey() {
+        System.out.println("Decrypted API Key: " + apiKey);
     }
 
     /**

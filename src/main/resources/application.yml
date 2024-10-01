@@ -25,3 +25,12 @@ server:
 chat:
   openai:
     model: gpt-4o-mini
+
+jasypt:
+  encryptor:
+    password: superkey
+
+api:
+  key: ENC(ZExSTYtqRyP5IPzz3okh3/RK8V+W5/rI2y2UB2eMjxzrtmV1nNSIgcgxUfaqmRPh)
+
+
